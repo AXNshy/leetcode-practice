@@ -40,7 +40,30 @@ class Solution:
             if temp is not None:
                 mheap.push(heap,(temp.val,temp)
         return head.next
-
+    
+    def mergeLists(self,lists):
+        if len(lists) == 0:
+            return lists
+        heap = []
+        head = None
+        tail = None
+        for i in lists:
+            if i != None:
+                heap.append((i.val,i))
+        minheap.heapify(heap)
+        v,t = minheap.pop(heap)
+        head = t
+        tail = head
+        t = t.next
+        minheap.push(heap,(t.val,t))
+        while heap:
+            v1,t1 = minheap.pop(heap)
+            tail.next = t1
+            tail = tail.next
+            t1 = t1.next
+            if t1:
+                minheap.push(heap,(t1.val,t1))
+        return head     
 
 
 
